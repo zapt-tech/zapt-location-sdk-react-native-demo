@@ -1,6 +1,6 @@
 # react-native-zapt-sdk-example
 ## Getting started
-To run the example just run  `$ yarn install` and `$ yarn android`.
+To run the example just run  `$ yarn install` and `$ yarn android` or `$ yarn ios`.
 ### Link to location on maps
 The function presented just below provides a link that can be used in a WebView or similar HTML rendering component. This link renders a map that shows the user's location in real time.
 
