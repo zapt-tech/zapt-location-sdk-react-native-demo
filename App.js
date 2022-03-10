@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import {ZaptMap} from 'react-native-zapt-sdk'
+import {ZaptMap, getMapLink} from 'react-native-zapt-sdk'
 
 class App extends Component {
   state = {
@@ -9,7 +9,13 @@ class App extends Component {
 
   placeID = '-ltvysf4acgzdxdhf81y';
   options = {
-      floorId: 1
+      floorId: 1,
+      zoom: -3,
+      appBar: false,
+
+      markerX: 1710,
+      markerY: 810,
+      markerZ: 1,
     };
 
   componentDidMount() {
@@ -23,6 +29,7 @@ class App extends Component {
   render() {
     return <ZaptMap
       placeID={this.placeID}
+      options={this.options}
     />
   }
 }
