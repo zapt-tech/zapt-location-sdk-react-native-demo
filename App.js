@@ -1,13 +1,14 @@
 
 import React, { Component } from 'react';
-import {ZaptMap, getMapLink} from 'react-native-zapt-sdk'
+import {ZaptMap, getMapLink, addLocationListener} from 'react-native-zapt-sdk'
+
+const placeID = '-ltvysf4acgzdxdhf81y';
 
 class App extends Component {
   state = {
     mapLink: '',
   };
 
-  placeID = '-ltvysf4acgzdxdhf81y';
   options = {
       floorId: 1,
       zoom: -3,
@@ -19,16 +20,20 @@ class App extends Component {
     };
 
   componentDidMount() {
-    getMapLink(this.placeID, this.options).then((mapLink) => {
+    getMapLink(placeID, this.options).then((mapLink) => {
       this.setState({
         mapLink: mapLink
       });
+    });
+
+    addLocationListener(placeID, (location) => {
+      console.info(location);
     });
   }
 
   render() {
     return <ZaptMap
-      placeID={this.placeID}
+      placeID={placeID}
       options={this.options}
     />
   }
