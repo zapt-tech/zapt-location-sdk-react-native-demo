@@ -1,10 +1,10 @@
 # react-native-zapt-sdk-example
 
-## Getting started
+## Getting Started
 
 To run the example just run  `$ yarn install` and `$ yarn android` or `$ yarn ios`.
 
-### Minimum requirements
+### Minimum Requirements
 
 | Requirement                               | Version        |
 | ----------------------------------------- | -------------- |
@@ -20,19 +20,7 @@ To run the example just run  `$ yarn install` and `$ yarn android` or `$ yarn io
 For the correct operation of the <code>ZaptMap</code> component on iOS platforms, it is necessary to install the 'react-native-webview' package, which can be done using the following command: `npm i react-native-webview`.
 
 Newer versions of React-Native perform the virtual link of libraries automatically, if you are using an older version or your project has an error when importing the library, try: `npx react-native link react-native-zapt-sdk`
-
-### Link to location on maps
-
-The function presented just below provides a link that can be used in a WebView or similar HTML rendering component. This link renders a map that shows the user's location in real time.
-
-```javascript
-import { getMapLink } from 'react-native-zapt-sdk';
-
-getMapLink(this.placeID, {floorId: 1, displayButtonList: false, ...}, (mapLink) => {
-	console.log(mapLink);
- });
-```
-### ZaptMap component
+### ZaptMap Component
 
 The `ZaptMap` component brings a real-time location map implementation, ready to be integrated into the APP.
 
@@ -60,9 +48,21 @@ Note: Both in the `getMapLink` function and in the `ZaptMap` component, the `pla
 ### Permissions Request
 As soon as the Map is initialized in the APP for the first time, permission will be requested to access the device's location, but if necessary, this permission can be requested at an earlier time through the `requestPermissions()` function.
 
-### Listen Location Events
+### Link to Maps
 
-It is possible to listen to localization events through the method: `addLocationListener(placeId, locationCallback)`.
+The function presented below provides a link that can be used in a WebView or similar HTML rendering component. This link renders a map that shows the user's location in real time.
+
+```javascript
+import { getMapLink } from 'react-native-zapt-sdk';
+
+getMapLink(this.placeID, {floorId: 1, displayButtonList: false, ...}, (mapLink) => {
+	console.log(mapLink);
+ });
+```
+
+### Listen to Location Events
+
+It is possible to listen to location events through the method: `addLocationListener(placeId, locationCallback)`.
 
 A `locationCallback` is invoked with the following object:
 
@@ -82,7 +82,7 @@ addLocationListener(placeID, (location) => {
   console.info(location);
 });
 
-// objeto que será impresso
+// printed object
 {
   "floorId": 1,
   "xy": [1830, 1540]
@@ -117,9 +117,15 @@ removeLocationListener()
 ### Receiving Background Events
 To receive events in the background it is necessary to call the method: `requestPermissionsBackground()`.
 
-On iOS, you need to add `Privacy - Location Always Usage Description` entry in Info.plist.
+On iOS, you need to:
+1) add `Privacy - Location Always Usage Description` entry in Info.plist.
+2) add the 'background mode' 
 
-On Android, you need to add the entry `<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>` in MANIFEST.MF.
+On Android, you need to:
+1) add AppRegistry.registerHeadlessTask
+2) add the entry `<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>` in AndroidManifest
+3) Add the init at the Application.java (see docs)
+4) Test it using release deploy, in a real device.
 
 Example of use:
 
@@ -146,8 +152,6 @@ initialize(placeID).then(() => {
   });
 });
 ```
-
-Em Android, eventos em background chegarão como [HeadlessTask](https://reactnative.dev/docs/headless-js-android):
 
 ```javascript
 //...
