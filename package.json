@@ -9,10 +9,10 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "@zapt-tech/react-native-zapt-sdk": "^1.0.17",
     "react": "18.2.0",
     "react-native": "0.71.4",
-    "react-native-webview": "^11.26.1",
-    "react-native-zapt-sdk": "1.0.16"
+    "react-native-webview": "^11.26.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

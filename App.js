@@ -1,6 +1,13 @@
 
 import React, { Component } from 'react';
-import { AppRegistry, NativeAppEventEmitter, NativeModules } from 'react-native';
+import {
+  AppRegistry,
+  NativeAppEventEmitter,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
 import {
   ZaptMap,
   getMapLink,
@@ -10,7 +17,7 @@ import {
   requestPermissionsBackground,
   setDisableSyncingForAnalytics,
   setDisableSyncingForPositioning
-} from 'react-native-zapt-sdk'
+} from '@zapt-tech/react-native-zapt-sdk';
 
 const placeID = '-ltvysf4acgzdxdhf81y';
 
@@ -92,12 +99,34 @@ class App extends Component {
   }
 
   render() {
-    return <ZaptMap
+    return <SafeAreaView style={styles.container}>
+    <View style={styles.appBar}>
+      <Text>Example App</Text>
+    </View>
+    <ZaptMap
       placeID={placeID}
       options={this.options}
     />
+    <View style={styles.appBar}>
+      <Text>Bottom Navigation</Text>
+    </View>
+  </SafeAreaView>
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#F2F2F2'
+  },
+  appBar: {
+    height: 60,
+    backgroundColor: '#193CF0',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+})
 
  /**
    * (Ignore this code if you dont need background location)

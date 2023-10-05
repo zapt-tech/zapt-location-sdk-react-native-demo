@@ -19,13 +19,13 @@ To run the example just run  `$ yarn install` and `$ yarn android` or `$ yarn io
 
 For the correct operation of the <code>ZaptMap</code> component on iOS platforms, it is necessary to install the 'react-native-webview' package, which can be done using the following command: `npm i react-native-webview`.
 
-Newer versions of React-Native perform the virtual link of libraries automatically, if you are using an older version or your project has an error when importing the library, try: `npx react-native link react-native-zapt-sdk`
+Newer versions of React-Native perform the virtual link of libraries automatically, if you are using an older version or your project has an error when importing the library, try: `npx react-native link @zapt-tech/react-native-zapt-sdk`
 ### ZaptMap Component
 
 The `ZaptMap` component brings a real-time location map implementation, ready to be integrated into the APP.
 
 ````javascript
- import { ZaptMap } from 'react-native-zapt-sdk';
+ import { ZaptMap } from '@zapt-tech/react-native-zapt-sdk';
 
 export default class App extends Component {
   placeID = '-ltvysf4acgzdxdhf81y';
